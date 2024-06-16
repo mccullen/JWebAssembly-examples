@@ -1,0 +1,73 @@
+buildscript {
+    repositories {
+        maven { url uri('https://jitpack.io') }
+        //mavenCentral()
+    }
+    dependencies {
+        classpath 'com.github.i-net-software:jwebassembly-gradle:master-SNAPSHOT'
+        //classpath 'gradle.plugin.de.inetsoftware:jwebassembly-gradle:+'
+    }
+}
+
+plugins {
+    id 'java'
+    //id 'de.inetsoftware.jwebassembly'
+}
+//apply plugin: 'java'
+apply plugin: 'de.inetsoftware.jwebassembly'
+wasm {
+    //Get more debug information if there are problems.
+    //logging.level = LogLevel.DEBUG
+    //logging.levelInternal = LogLevel.DEBUG
+
+    //Change the output format to the text format *.wat.
+    //This can be helpful to understand the problems if you see the generated code as text format.
+    //format = 'Text'
+
+    //The used JWebAssembly compiler version. The default is the latest release '+'.
+    //You can set any valid Gradle version string or a full dependency string.
+    //The snapshot version is recommended until a stable release.
+    //compilerVersion = 0.2
+    compilerVersion = 'com.github.i-net-software:jwebassembly:master-SNAPSHOT'
+
+    //Write method and parameter names into the output *.wasm file.
+    //The file will be approximate 10% larger. And it generate a source map.
+    //With a source map you can see in the debugger of the browser your source code if available.
+    debugNames = true
+
+    //Set an absolute or relative path between the final wasm file location and the source files location.
+    ///This is needed for debugging in the browser. It work only if debugNames = true.
+    //sourceMapBase = '../../src/main/java/'
+    //sourceMapBase = '/src/main/java/'
+
+    //set the destination dir
+    //destinationDir = file( 'targetDir' )
+
+    //ignore all referenced native methods without declared replacement in a library and replace them with a stub that throws an exception at runtime
+    //properties[ 'IgnoreNative' ] = 'true'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' } // for snapshot of the API
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    //compile 'de.inetsoftware:jwebassembly-api:+'
+    //compile 'com.github.i-net-software:jwebassembly-api:master-SNAPSHOT'
+    implementation 'com.github.i-net-software:jwebassembly-api:master-SNAPSHOT'
+}
+
+archivesBaseName = 'HelloWorld'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
