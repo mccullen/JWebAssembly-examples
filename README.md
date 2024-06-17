@@ -18,7 +18,7 @@ the simple HelloWorld example (other examples to come?).
   - Hit Refresh
   - Under Tasks &rarr; Build, select "clean"
   - If clean is successful, then do "build"
-- After building, check for build directory with your wasm files. There should be the same three in the "resources" directory
+- After building, check for build/distributions directory with your wasm files. There should be the same three in the "resources" directory
 - To use, reference the index.html in resources/, and the official documentation
 
 

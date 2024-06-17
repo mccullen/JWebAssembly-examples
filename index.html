@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="./build/distributions/HelloWorld.wasm.js"></script>
+</head>
+<body>
+<script>
+/*
+    wasmImports.modu = {
+        f: () => {
+            return "ABCDEFG";
+        }
+    };
+    debugger;
+    */
+    WebAssembly.instantiateStreaming(fetch('./build/distributions/HelloWorld.wasm'), wasmImports)
+      .then(obj => {
+        wasmImports.instance = obj.instance;
+        obj.instance.exports.main();
+        var e = obj.instance.exports;
+        debugger;
+      })
+      .catch(err => document.write(err));
+  </script>
+</body>
+</html>

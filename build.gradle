@@ -15,6 +15,27 @@ plugins {
 }
 //apply plugin: 'java'
 apply plugin: 'de.inetsoftware.jwebassembly'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' } // for snapshot of the API
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.github.i-net-software:jwebassembly-api:master-SNAPSHOT'
+    compile 'de.inetsoftware:jwebassembly-api:+'
+
+    //implementation 'com.github.i-net-software:jwebassembly-api:master-SNAPSHOT'
+}
+archivesBaseName = 'HelloWorld'
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
 wasm {
     //Get more debug information if there are problems.
     //logging.level = LogLevel.DEBUG
@@ -48,26 +69,7 @@ wasm {
 }
 
 group 'org.example'
-version '1.0-SNAPSHOT'
+version ''
 
-repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' } // for snapshot of the API
-}
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    //compile 'de.inetsoftware:jwebassembly-api:+'
-    //compile 'com.github.i-net-software:jwebassembly-api:master-SNAPSHOT'
-    implementation 'com.github.i-net-software:jwebassembly-api:master-SNAPSHOT'
-}
 
-archivesBaseName = 'HelloWorld'
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src/main/java'
-        }
-    }
-}
